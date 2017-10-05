@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+/*Program was created by Nikita L. Carter on 09/14/2017 for the purpose of showing 
+ * what was learned within the text. This program impliments if/else, try/catch, 
+ * & TryParse.*/
+
+namespace CaeterLab3
+{
+    public partial class BookClubPoints : Form
+    {
+        public BookClubPoints()
+        {
+            InitializeComponent();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            //Clear all TexBoxes and Labels
+            booksPurchasedTextBox.Text = " ";
+
+            //Reset Focus
+            booksPurchasedTextBox.Focus();
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            //Close form
+            this.Close();
+        }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            int booksPurchased; // Variables
+
+             try
+            {
+                if (int.TryParse(booksPurchasedTextBox.Text, out booksPurchased))
+                {
+                    if (booksPurchased >= 0)
+                    {
+                        MessageBox.Show("Sorry, you have earned 0 points!");
+                    }
+                    if (booksPurchased == 1)
+                    {
+                        MessageBox.Show("Congratulations! You have earned 5 points!");
+                    }
+                    if (booksPurchased == 2)
+                    {
+                        MessageBox.Show("Congratulations! You have earned 15 points!");
+                    }
+                    if (booksPurchased == 3)
+                    {
+                        MessageBox.Show("Congratulations! You have earned 30 points!");
+                    }
+                    if (booksPurchased >= 4)
+                    {
+                        MessageBox.Show("Congratulations! You have earned 60 points!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ut Oh! Entry not valid. Try Again!");
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                //Display error message
+                MessageBox.Show(ex.Message);
+            }
+        }
+    }
+}
