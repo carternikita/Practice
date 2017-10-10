@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CarterLab2
+{  /* This application was created for classroom purposes to 
+    deminstrate the material learned from the text.
+    The following program displays calculations, ToString, try/catch,
+    and proper use of text box's and labels.*/
+
+    public partial class CarterLab2 : Form
+    {
+        public CarterLab2()
+        {
+            InitializeComponent();
+        }
+
+        private void calculateButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                const double SALES_TAX = 0.07; //sales tax calculation
+                const double TIP_PERCENTAGE = 0.15; //tip amount calculation
+                double mealAmount; //declare meal amount
+                double totalAmount; //declatation of total amount
+                double salesTaxAmount; // sales tax after calculation
+                double tipAmount; // tip after calculation
+                
+                mealAmount = double.Parse(mealTextBox.Text);//meal amount entry
+                //Below are calculations
+                salesTaxAmount = mealAmount * SALES_TAX;
+                tipAmount = mealAmount * TIP_PERCENTAGE;
+                totalAmount = mealAmount + salesTaxAmount + tipAmount;
+
+                //Display of calculations
+                salesTaxLabel2.Text = salesTaxAmount.ToString("c");
+                tipAmountLabel2.Text = tipAmount.ToString("c");
+                totalAmountLabel2.Text = totalAmount.ToString("c");
+            }
+
+            catch (Exception ex)
+            {
+                //Display default error message
+                MessageBox.Show(ex.Message);
+            }
+
+            }
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            //Clear all inouts and outputs from form
+            mealTextBox.Text = "";
+            salesTaxLabel2.Text = "";
+            tipAmountLabel2.Text = "";
+            totalAmountLabel2.Text = "";
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            //Exit application
+            this.Close();
+        }
+
+            }
+    }
+
